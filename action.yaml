@@ -46,14 +46,14 @@ runs:
 
       if matched:
           groupdict = matched.groupdict()
-          print('::set-output name=json::{}'.format(json.dumps(groupdict)))
-          print('::set-output name=version::{}'.format(matched.string))
+          print('json={} >> $GITHUB_OUTPUT'.format(json.dumps(groupdict)))
+          print('version={} >> $GITHUB_OUTPUT'.format(matched.string))
 
           for key, value in groupdict.items():
             if not value:
               continue
 
-            print('::set-output name={key}::{value}'.format(key=key, value=value))
+            print('{key}={value} >> $GITHUB_OUTPUT'.format(key=key, value=value))
   - shell: bash
     run: |
       echo "::group::Output"
